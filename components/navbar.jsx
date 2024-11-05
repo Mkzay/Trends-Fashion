@@ -11,7 +11,7 @@ const navbar = () => {
   };
 
   return (
-    <nav className="flex items-center justify-between w-full fixed top-0 p-5 font-jane z-50">
+    <nav className="flex items-center justify-between w-full fixed top-0 p-5 font-jane z-50 bg-[#f8f8f8]">
       <div className="flex items-center gap-2">
         <button onClick={toggleAuth} className="lg:hidden">
           <Image

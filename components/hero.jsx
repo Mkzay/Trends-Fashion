@@ -1,9 +1,14 @@
+import Image from "next/image";
+
 const hero = () => {
   return (
-    <section className="font-symphony">
+    <section className="font-symphony px-5">
       <div className="flex flex-col gap-3 items-center justify-center lg:flex-row">
-        <div className="h-96 w-full bg-blue-300"></div>
-        <div className="h-96 w-full bg-black p-8 flex flex-col items-start justify-evenly">
+        <div className="h-96 w-full bg-blue-300">
+        <Image className="w-full h-full" src="/images/miguel.jpg" alt="miguel" width={900} height={900} />
+        </div>
+        <div className="h-96 w-full bg-black p-8 flex flex-col items-start justify-between">
+          <Image src="/images/quote.svg" alt="quote" width={30} height={30} />
           <p className="text-white text-2xl">
             Its a brand that understands fashion isn't just clothing, it's a way
             of expressing yourself. Thank you, <span>Grace</span>, for making
@@ -23,7 +28,7 @@ const hero = () => {
         <h1>DISCOUNT 20%</h1>
       </div>
 
-      <div className="h-[400px] w-full bg-white flex flex-col justify-between p-10 lg:flex-row">
+      <div className="h-[400px] w-full bg-white flex flex-col justify-between p-10 bg-[url(/images/pascal.jpg)] bg-no-repeat bg-center bg-cover lg:flex-row">
         <h1 className="uppercase text-4xl w-9/12 lg:w-3/12">
           bold <span className="italic text-orange-600">trends</span> the
           fashion confident
