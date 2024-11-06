@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import Link from "next/link";
 
 const navbar = () => {
   const [openAuth, setOpenAuth] = useState(false);
@@ -21,7 +22,9 @@ const navbar = () => {
             height={15}
           />
         </button>
-        <h1 className="text-xl lg:text-3xl uppercase">Trends</h1>
+        <Link href="/" passHref>
+          <h1 className="text-xl lg:text-3xl uppercase">Trends</h1>
+        </Link>
       </div>
       <ul
         className={`${

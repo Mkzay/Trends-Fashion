@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Loader from "./loader";
+import Link from "next/link";
 
 const categories = () => {
   const [products, setProducts] = useState([]);
@@ -39,7 +40,7 @@ const categories = () => {
   }
 
   return (
-    <section className="p-5 lg:py-0 lg:-mt-20 pb-20 flex flex-col gap-10 font-symphony">
+    <section className="p-5 lg:py-0 lg:-mt-20 pb-20 flex flex-col gap-5 lg:gap-10 font-symphony">
       <ul className="flex items-start justify-between lg:justify-normal lg:gap-10">
         <li>Overview</li>
         <li>Hoodie</li>
@@ -50,18 +51,34 @@ const categories = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {products.map((product) => (
           <div key={product.id} className="text-sm">
-            <img
-              src={`https://${product.imageUrl}`}
-              alt={product.name}
-              className="w-full h-96 object-cover mb-4 hover:opacity-80 transition"
-            />
-            <h2 className="font-semibold">{product.name}</h2>
-            <p className="text-gray-600">${product.price.current.value}</p>
+            <Link href={`/product/${product.id}`}>
+              <img
+                src={`https://${product.imageUrl}`}
+                alt={product.name}
+                className="w-full h-96 object-cover mb-4 hover:opacity-80 transition"
+              />
+              <h2 className="font-semibold">{product.name}</h2>
+              <p className="text-gray-600">${product.price.current.value}</p>
+            </Link>
           </div>
         ))}
+      </div>
+      <div className="lg:relative left-[65%]">
+        <p className="md:w-7/12 lg:w-4/12 text-gray-600 text-base">
+          These are the pieces that transcends seasons and trends, the wardrobe
+          staples that never go out of style. These are the pieces that
+          transcends seasons.
+        </p>
+        <a className="text-orange-500 text-xs md:text-sm border-b border-orange-500">
+          See More
+        </a>
       </div>
     </section>
   );
 };
 
 export default categories;
+
+{
+  /*55188b7c57msh8918d4b682110e8p198c72jsn131a175ca79e*/
+}
