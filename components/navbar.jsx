@@ -28,7 +28,7 @@ const navbar = () => {
           openAuth
             ? "duration-200 ease-in lg:hidden"
             : "-translate-x-[400%] duration-500 ease-out lg:hidden"
-        } flex flex-col items-start gap-10 absolute top-0 left-0 bg-black text-white w-8/12 h-screen pt-16 p-10 lg-hidden`}
+        } flex flex-col items-start gap-10 absolute top-0 left-0 bg-white text-black w-8/12 h-screen pt-16 p-10 lg-hidden`}
       >
         <button onClick={toggleAuth} className="absolute top-5 right-5">
           <Image
