@@ -5,7 +5,7 @@ import Categories from "@/components/categories";
 
 const page = () => {
   return (
-    <section className="mt-16 lg:mt-28 py-5 overflow-clip flex flex-col lg:gap-10">
+    <section className="mt-16 lg:mt-12 py-5 overflow-clip flex flex-col lg:gap-10">
       <div className="flex flex-col lg:-space-y-6 px-5">
         <h1 className="font-neology text-3xl/snug md:text-6xl/normal lg:text-[7.4rem]/[10rem] uppercase flex justify-end">
           TIMELESS

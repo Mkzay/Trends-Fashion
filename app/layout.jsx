@@ -2,6 +2,7 @@ import localFont from "next/font/local";
 import "@/styles/globals.css";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import { CartProvider } from "@/components/cartContext";
 
 const neology = localFont({
   src: "/fonts/Neology.woff",
@@ -30,9 +31,11 @@ export default function RootLayout({ children }) {
       <body
         className={`${neology.variable} ${symphony.variable} ${jane.variable} bg-[#f8f8f8] antialiased`}
       >
-        <Navbar />
-        {children}
-        <Footer />
+        <CartProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </CartProvider>
       </body>
     </html>
   );

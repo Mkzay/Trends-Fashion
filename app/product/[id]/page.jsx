@@ -1,12 +1,14 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useCart } from "@/components/cartContext"; // Assuming you have a CartContext
 
 const ProductDetails = ({ params }) => {
   const { id } = params;
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
+  const { addToCart } = useCart(); // Using cart context
 
   const url = `https://asos2.p.rapidapi.com/products/v4/detail?lang=en-US&store=US&id=${id}&sizeSchema=US&currency=USD`;
   const options = {
@@ -22,7 +24,6 @@ const ProductDetails = ({ params }) => {
       try {
         const response = await fetch(url, options);
         const data = await response.json();
-        console.log("Product details response:", data); // Log the response for debugging
         setProduct(data);
         setLoading(false);
       } catch (error) {
@@ -34,16 +35,8 @@ const ProductDetails = ({ params }) => {
     fetchProductDetails();
   }, [id]);
 
-  const incrementQuantity = () => {
-    setQuantity((prevQty) => prevQty + 1);
-  };
-
-  const decrementQuantity = () => {
-    if (quantity > 1) setQuantity((prevQty) => prevQty - 1);
-  };
-
-  const addToCart = () => {
-    console.log(`Added ${quantity} of ${product?.name} to cart`);
+  const handleAddToCart = () => {
+    addToCart(product, quantity);
   };
 
   if (loading) {
@@ -54,44 +47,62 @@ const ProductDetails = ({ params }) => {
     return <p>Product not found</p>;
   }
 
-  // Use the first image from the media.images array
   const imageUrl = product?.media?.images[0]?.url
     ? `https://${product.media.images[0].url}`
     : "";
 
   return (
-    <div className="p-5 mt-16 lg:mt-28">
-      <h1 className="text-2xl font-bold mb-4">{product?.name}</h1>
-      {imageUrl ? (
-        <img
-          src={imageUrl}
-          alt={product?.name}
-          className="w-full h-96 object-cover mb-4 lg:w-5/12"
-        />
-      ) : (
-        <p>No image available</p>
-      )}
-      {/* Handle price */}
-      <p className="text-lg font-semibold">
-        {product?.price?.current?.value
-          ? `$${product.price.current.value}`
-          : "Price not available"}
-      </p>
-      <div className="flex items-center gap-2 mt-4">
-        <button onClick={decrementQuantity} className="px-4 py-2 bg-gray-300">
-          -
-        </button>
-        <span>{quantity}</span>
-        <button onClick={incrementQuantity} className="px-4 py-2 bg-gray-300">
-          +
-        </button>
+    <div className="px-4 z-20 flex flex-col items-center justify-center gap-10 lg:mt-[30px] lg:items-start lg:pl-[105px] lg:pr-[87px]">
+      <div className="flex flex-col items-center justify-center mt-[58px] lg:flex-row lg:justify-start gap-10">
+        {imageUrl ? (
+          <img
+            className="w-[358px] h-[380px] rounded-2xl xl:w-[349px] lg:h-[465px]"
+            src={imageUrl}
+            alt={product?.name}
+          />
+        ) : (
+          <p>No image available</p>
+        )}
+        <div className="flex flex-col gap-4 lg:gap-6">
+          <h1 className="text-lg font-bold text-black lg:text-2xl">
+            {product?.name}
+          </h1>
+          <p className="text-base text-[#FF4500] font-semibold lg:text-lg">
+            {product?.price?.current?.value
+              ? `$${product.price.current.value}`
+              : "Price not available"}
+          </p>
+          <p className="text-sm lg:text-lg text-black">
+            {product?.description || "No description available"}
+          </p>
+          <ul className="text-lg/[24px] text-black lg:text-[18px]/[22px] font-medium list-disc ml-5">
+            {product?.additionalInfos?.map((info, index) => (
+              <li key={index}>{info}</li>
+            ))}
+          </ul>
+          <div className="flex items-center gap-5 mt-4">
+            <button
+              onClick={() => setQuantity((q) => Math.max(q - 1, 1))}
+              className="px-4 py-2 bg-black text-white rounded-lg hover:bg-orange-600"
+            >
+              -
+            </button>
+            <span className="text-lg font-semibold">{quantity}</span>
+            <button
+              onClick={() => setQuantity((q) => q + 1)}
+              className="px-4 py-2 bg-black text-white rounded-lg hover:bg-orange-600"
+            >
+              +
+            </button>
+          </div>
+          <button
+            onClick={handleAddToCart}
+            className="mt-4 py-3 lg:w-3/12 bg-black text-white rounded-lg hover:bg-gray-800"
+          >
+            Add to Cart
+          </button>
+        </div>
       </div>
-      <button
-        onClick={addToCart}
-        className="mt-4 px-6 py-3 bg-blue-500 text-white rounded-md"
-      >
-        Add to Cart
-      </button>
     </div>
   );
 };
