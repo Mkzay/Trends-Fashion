@@ -52,7 +52,7 @@ const ProductDetails = ({ params }) => {
     : "";
 
   return (
-    <div className="px-4 z-20 flex flex-col items-center justify-center gap-10 lg:mt-[30px] lg:items-start lg:pl-[105px] lg:pr-[87px]">
+    <div className="px-4 z-20 font-symphony flex flex-col items-center justify-center gap-10 lg:mt-[30px] lg:items-start lg:pl-[105px] lg:pr-[87px]">
       <div className="flex flex-col items-center justify-center mt-[58px] lg:flex-row lg:justify-start gap-10">
         {imageUrl ? (
           <img

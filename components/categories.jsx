@@ -40,14 +40,10 @@ const categories = () => {
   }
 
   return (
-    <section className="p-5 lg:py-0 lg:-mt-20 pb-20 flex flex-col gap-5 lg:gap-10 font-symphony">
-      <ul className="flex items-start justify-between lg:justify-normal lg:gap-10">
-        <li>Overview</li>
-        <li>Hoodie</li>
-        <li>Coats & Jacket</li>
-        <li>Denim</li>
-        <li>Shirt</li>
-      </ul>
+    <section className="p-5 lg:py-0 pb-20 flex flex-col gap-2 lg:gap-0 font-symphony">
+      <h1 className="text-2xl lg:text-5xl/normal uppercase">
+        Top <span className="text-orange-500">Choices</span>
+      </h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {products.map((product) => (
           <div key={product.id} className="text-sm">

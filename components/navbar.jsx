@@ -5,11 +5,13 @@ import { useState } from "react";
 import Link from "next/link";
 import { useCart } from "@/components/cartContext"; // Import the cart context
 import Cart from "@/components/cart"; // Import the cart component
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const [openAuth, setOpenAuth] = useState(false);
-  const [openCart, setOpenCart] = useState(false); // State to manage cart visibility
-  const { cartItems } = useCart(); // Access cart items from CartContext
+  const [openCart, setOpenCart] = useState(false);
+  const { cartItems } = useCart();
+  const pathname = usePathname();
 
   const toggleAuth = () => {
     setOpenAuth((prev) => !prev);
@@ -18,6 +20,11 @@ const Navbar = () => {
   const toggleCart = () => {
     setOpenCart((prev) => !prev);
   };
+
+  const activeLink = "text-orange-600 font-bold";
+  const inactiveLink = "";
+
+  const isLinkActive = (href) => pathname === href;
 
   return (
     <>
@@ -52,9 +59,9 @@ const Navbar = () => {
               height={15}
             />
           </button>
-          <Link href="/" passHref>
-            <li>Home</li>
-          </Link>
+          <li className={isLinkActive("/") ? activeLink : inactiveLink}>
+            <Link href="/">Home</Link>
+          </li>
 
           <li>New Arrivals</li>
           <li>Collections</li>
@@ -64,9 +71,9 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <ul className="hidden items-center gap-24 lg:flex">
-          <Link href="/" passHref>
-            <li>Home</li>
-          </Link>
+          <li className={isLinkActive("/") ? activeLink : inactiveLink}>
+            <Link href="/">Home</Link>
+          </li>
           <li>New Arrivals</li>
           <li>Collections</li>
           <li>Sales</li>
