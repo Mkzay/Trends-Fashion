@@ -1,8 +1,10 @@
+import CollectionList from "./collectionList";
+
 const collection = () => {
   return (
-    <section className="font-symphony flex flex-col gap-10 lg:gap-20 mt-8 lg:mt-20 px-5">
+    <section className="font-symphony flex flex-col gap-10 mt-8 lg:mt-20 px-5">
       <div className="flex gap-28 lg:gap-44">
-        <h1 className="uppercase text-sm font-bold">collection</h1>
+        <h1 className="uppercase text-lg lg:text-3xl font-bold">collection</h1>
         <div className="flex flex-col items-center justify-between w-full gap-5 md:flex-row lg:gap-0">
           <h2 className="uppercase text-orange-500 text-2xl md:text-5xl lg:text-7xl/tight italic flex items-start justify-center flex-col">
             fearless <br />{" "}
@@ -13,10 +15,11 @@ const collection = () => {
           </a>
         </div>
       </div>
-      <p className="flex items-end justify-end md:w-6/12 lg:w-4/12 relative md:-right-[50%] mt-10 text-gray-600 text-base">
+      <p className="flex items-end justify-end md:w-6/12 lg:w-4/12 relative md:-right-[50%] lg:mt-10 text-gray-600 text-base">
         Fearless confidence is that unwavering belief in yourself and your
         abilities, the audacity to step outside comfort zone.
       </p>
+      <CollectionList />
       <div className="flex flex-col justify-between gap-3 lg:gap-0 lg:flex-row">
         <p className="lg:w-[27%] text-gray-600 text-sm">
           It's about selecting pieces that are as relevant today as they were

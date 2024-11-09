@@ -6,19 +6,19 @@ import Link from "next/link";
 import { useCart } from "@/components/cartContext"; // Import the cart context
 import Cart from "@/components/cart"; // Import the cart component
 import { usePathname } from "next/navigation";
+import MobileNav from "@/components/mobileNav";
 
 const Navbar = () => {
-  const [openAuth, setOpenAuth] = useState(false);
   const [openCart, setOpenCart] = useState(false);
   const { cartItems } = useCart();
   const pathname = usePathname();
 
-  const toggleAuth = () => {
-    setOpenAuth((prev) => !prev);
-  };
-
   const toggleCart = () => {
     setOpenCart((prev) => !prev);
+  };
+
+  const toggleAuth = () => {
+    setOpenAuth((prev) => !prev);
   };
 
   const activeLink = "text-orange-600 font-bold";
@@ -43,31 +43,9 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {/* Mobile Menu */}
-        <ul
-          className={`${
-            openAuth
-              ? "duration-200 ease-in lg:hidden"
-              : "-translate-x-[400%] duration-500 ease-out lg:hidden"
-          } flex flex-col items-start gap-10 absolute top-0 left-0 bg-white text-black w-8/12 h-screen pt-16 p-10 lg-hidden`}
-        >
-          <button onClick={toggleAuth} className="absolute top-5 right-5">
-            <Image
-              src="/images/xmark-solid.svg"
-              alt="menu-bar"
-              width={15}
-              height={15}
-            />
-          </button>
-          <li className={isLinkActive("/") ? activeLink : inactiveLink}>
-            <Link href="/">Home</Link>
-          </li>
-
-          <li>New Arrivals</li>
-          <li>Collections</li>
-          <li>Sales</li>
-          <li>Contact</li>
-        </ul>
+        <div>
+          <MobileNav />
+        </div>
 
         {/* Desktop Menu */}
         <ul className="hidden items-center gap-24 lg:flex">

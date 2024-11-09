@@ -7,8 +7,8 @@ const Cart = ({ onClose }) => {
   const { cartItems, removeFromCart, totalPrice } = useCart();
 
   return (
-    <div className="fixed top-14 right-5 z-40 lg:z-50">
-      <div className="relative w-80 h-72 rounded-xl bg-white shadow-lg p-5 overflow-auto">
+    <div className="fixed top-14 right-5 z-30 lg:z-50">
+      <div className="relative w-80 h-fit max-h-96 rounded-xl bg-white shadow-lg p-5 overflow-auto">
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-2xl font-bold"
